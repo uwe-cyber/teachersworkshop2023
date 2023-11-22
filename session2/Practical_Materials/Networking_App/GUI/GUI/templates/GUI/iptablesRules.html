@@ -1,0 +1,26 @@
+{% extends 'GUI/dependencies.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="container ">
+    
+    <form method="POST" action="">
+        {% csrf_token %}
+        <label>Current Rules:<br>
+            <select name="iptables_rules" multiple size="10">
+                {% for key, value in rules.items%}
+                    <option value="{{ key }}">{{ value }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <br>
+        <button type="submit" class="btn btn-primary">Remove</button>
+    </form>
+        
+</div>
+
+  
+{% endblock %}
+

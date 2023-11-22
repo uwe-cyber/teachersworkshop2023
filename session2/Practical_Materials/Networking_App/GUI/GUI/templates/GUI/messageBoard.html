@@ -1,0 +1,47 @@
+{% extends 'GUI/dependencies.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="container ">
+    
+    <form method="POST" action="">
+        {% csrf_token %}
+        <label>Your TCP Messages:<br>
+            <select name="tcp_message_to_inspect" multiple size="10">
+                {% for item in TCP_messages%}
+                    <option value="{{ item }}">{{ item }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <br>
+
+        <label>Your UDP Messages:<br>
+            <select name="udp_message_to_inspect" multiple size="10">
+                {% for key, value in UDP_messages.items%}
+                    <option value="{{ key }}">{{ value }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <br>
+
+
+        <button type="submit" class="btn btn-primary">Inspect</button>
+    </form>
+
+    {% for key, value in chosen_tcp_message.items%}
+        {{ key }} : {{ value }}<br>
+    {% endfor %}
+
+    <br>
+
+    {% for key, value in chosen_udp_message.items%}
+        {{ key }} : {{ value }}<br>
+    {% endfor %}
+        
+</div>
+
+  
+{% endblock %}
+

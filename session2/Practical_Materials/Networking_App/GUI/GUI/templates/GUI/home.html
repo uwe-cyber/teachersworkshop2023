@@ -1,0 +1,45 @@
+
+{% extends 'GUI/dependencies.html' %}
+
+{% block content %}
+{% load static %}
+<div class="container ">
+<h1>Goibhniu</h1>
+
+<h5>
+Details of the latest recieved packet.<br>
+<br>
+{% for key, value in packet_data.items%}
+    {{key}} : {{ value }}
+    <br>
+{% endfor %}
+</h5>
+
+<form method="POST">
+  {% csrf_token %}
+  <h5>Please select the network protocol:</h5>
+      <input type="checkbox" id="protocol" name="protocol" value="tcp" checked/>
+      <label for="protocol">TCP</label>
+
+      <input type="checkbox" id="protocol" name="protocol" value="udp" />
+      <label for="protocol">UDP</label><br>
+  <br>
+
+  IP Address&emsp;&emsp;<input type="text" name="dest_addr" id="dest_addr" placeholder='192.168.x.x' size="40"><br>
+  Port&emsp;&emsp;&emsp;&emsp;&emsp;<input type="text" name="dest_port" id="dest_port" placeholder='1337' size="40"><br>
+  <br>
+  Message Data&nbsp;<input type="text" name="msg_data" id="msg_data" placeholder='Hello There' size="40"><br>
+  <br>
+  <button type="submit" class="btn btn-primary" name="block" formaction="">Block</button>
+  <button type="submit" class="btn btn-primary" name="send" formaction="">Send</button>
+</form>
+
+<h2>
+  <pre>
+{{ response }}
+  </pre>
+</h2>
+
+</div>
+{% endblock %}
+ 
