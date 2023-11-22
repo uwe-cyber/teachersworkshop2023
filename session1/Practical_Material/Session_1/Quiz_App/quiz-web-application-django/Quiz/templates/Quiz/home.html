@@ -1,0 +1,48 @@
+
+{% extends 'Quiz/dependencies.html' %}
+
+{% block content %}
+{% load static %}
+<div class="container ">
+<h1>Guess H-UWE</h1>
+
+<h5>
+H-UWE is a real chatter bot - Can you talk them into giving away details that you can use to guess their password?
+<br>
+<br>
+Remember you might need to combine your social engineering with open source intelligence (google!) and the password formats might also have changed. For example lots of people swap letters for numbers (and vice versa)
+<br>
+</h5>
+
+<!-- <div align="right " id="displaytimer"><b>Timer: 0 seconds</b></div> -->
+
+ <form method='post' action=''>
+    {% csrf_token %}
+    <div class="form-group">
+      <label> What is H-UWEs password? </label>
+    </div>
+    <input type="text" id="answer" name="answer" value="Password is...?"><br>  
+    <input id='timer' type='hidden' name="timer" value="">
+    <br>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+    <!--  {% block script %}
+        <script>
+
+            console.log('hello world')
+            const timer=document.getElementById('displaytimer')
+            console.log(timer.textContent)
+            const inputtag = document.getElementById('timer')
+
+            t=0
+            setInterval(()=>{
+                t+=1
+                timer.innerHTML ="<b>Timer: " +t+" seconds</b>"
+                inputtag.value = t
+            },1000)
+        </script>
+    {% endblock script %}-->
+
+</div>
+{% endblock %}
+ 
